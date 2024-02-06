@@ -1,9 +1,34 @@
-{%expands 'base.html'%}
+{%extends 'base.html'%}
 
 {%block title%}
     Pokemon
 {%endblock%}
 
 {%block content%}
+    <form class="poke-form" method="POST">
+        <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Pokemon</label>
+        <input type="text" name="pokemon" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+        <div id="emailHelp" class="form-text">(Name or number up to 1000)</div>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+{%if pokedata:%}
+    <div class="poke-card card" style="width: 18rem;">
+        <img src="{{pokedata.sprite_img}}" class="poke-img card-img-top" alt="pokemon image">
+        <div class="mytitle card-body">
+            <h5 class="card-title">{{pokedata.name}}</h5>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">HP: {{pokedata.hp}}</li>
+            <li class="list-group-item">Defense: {{pokedata.defense}}</li>
+            <li class="list-group-item">Attack: {{pokedata.attack}}</li>
+            <li class="poke-abil list-group-item">Abilities: {%for ability in pokedata.abilities%}
+                <a href="https://pokemondb.net/ability/{{ability}}" target="_blank">{{ ability }}</a> &#8226;
+                {%endfor%}
+            </li>
+        </ul>
+    </div>
+{%endif%}
 
-{%endblock}
+{%endblock%}
