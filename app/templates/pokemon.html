@@ -4,14 +4,20 @@
     Pokemon
 {%endblock%}
 
+{%block styles%}
+<link rel="stylesheet" href="../static/styles/pokemon.css">
+{%endblock%}
+
+
 {%block content%}
     <form class="poke-form" method="POST">
+        {{ form.hidden_tag() }}
         <div class="mb-3">
         <label for="exampleInputEmail1" class="form-label">Pokemon</label>
-        <input type="text" name="pokemon" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+        {{ form.pokemon(class="form-control", id="exampleInputEmail1")}}
         <div id="emailHelp" class="form-text">(Name or number up to 1000)</div>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        {{ form.submit_btn(class="btn btn-primary")}}
     </form>
 {%if pokedata:%}
     <div class="poke-card card" style="width: 18rem;">
