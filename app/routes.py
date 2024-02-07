@@ -14,8 +14,7 @@ def greeting(user):
 
 # Pokemon API function and route to get and return info
 def pokemon_info(name_or_id):
-    inpt = str(name_or_id)
-    url = f'https://pokeapi.co/api/v2/pokemon/{inpt}'
+    url = f'https://pokeapi.co/api/v2/pokemon/{name_or_id}'
     response = requests.get(url)
     if response.ok:
         data = response.json()
@@ -28,7 +27,7 @@ def pokemon_info(name_or_id):
             'abilities' : [data['abilities'][x]['ability']['name'] for x in range(0, len(data['abilities']))]
         }
         return info_dict
-    return None
+    return 404
 
 @app.route('/pokemon', methods=['GET','POST'])
 def pokemon():
@@ -36,6 +35,6 @@ def pokemon():
     if request.method == 'POST' and form.validate_on_submit():
         pokemon = form.pokemon.data
         pokedata = pokemon_info(pokemon)
-        return render_template('pokemon.html', pokedata=pokedata)
+        return render_template('pokemon.html', pokedata=pokedata, form=form)
     else:
         return render_template('pokemon.html', form=form)
