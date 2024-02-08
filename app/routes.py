@@ -1,7 +1,7 @@
 from flask import request, render_template
 import requests
 from app import app
-from .forms import PokemonInput
+from .forms import PokemonInput, SignUpInput, LoginInput
 
 # Home route, greeting page with or without a name
 @app.route('/')
@@ -11,6 +11,31 @@ def hello():
 @app.route('/<user>')
 def greeting(user):
      return render_template('home.html', user=user)
+
+# Login route
+@app.route('/login', methods=["GET", "POST"])
+def login():
+    form = LoginInput()
+    if request.method == 'POST' and form.validate_on_submit():
+        username = form.username.data
+        password = form.password.data
+        submit_btn = form.submit_btn.data
+        return render_template('login.html', form=form, username=username, password=password, submit_btn=submit_btn)
+    else:
+        return render_template('login.html', form=form)
+
+# Signup route
+@app.route('/signup', methods=["GET", "POST"])
+def signup():
+    form = SignUpInput()
+    if request.method == 'POST' and form.validate_on_submit():
+        username = form.username.data
+        email = form.email.data
+        password = form.password.data
+        submit_btn = form.submit_btn.data
+        return render_template('signup.html', form=form, username=username, email=email, password=password, submit_btn=submit_btn)
+    else:
+        return render_template('signup.html', form=form)
 
 # Pokemon API function and route to get and return info
 def pokemon_info(name_or_id):
