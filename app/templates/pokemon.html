@@ -8,17 +8,32 @@
 <link rel="stylesheet" href="../static/styles/pokemon.css">
 {%endblock%}
 
+{%block nav%}
+<li class="nav-item">
+  <a class="nav-link mynavitems" href="/home">Home </a>
+</li>
+<li class="nav-item">
+  <a class="nav-link mynavitems myactive" href="/pokemon">Play</a>
+</li>
+<li class="nav-item">
+  <a class="nav-link mynavitems" href="/login">Login</a>
+</li>
+{%endblock%}
 
 {%block content%}
     <form class="poke-form" method="POST">
         {{ form.hidden_tag() }}
         <div class="mb-3">
-        <label for="exampleInputEmail1" class="form-label">Pokemon</label>
-        {{ form.pokemon(class="form-control", id="exampleInputEmail1")}}
+        <label for="exampleInputEmail1" class="form-label"><img class="form-label mypokeimg" src="https://cdn.freebiesupply.com/images/large/2x/pokemon-logo-black-transparent.png" alt="pokemon"></label>
+        {{ form.pokemon(class="myformcontrol form-control", id="exampleInputEmail1")}}
         <div id="emailHelp" class="form-text">(Name or number up to 1025)</div>
         </div>
-        {{ form.submit_btn(class="btn btn-primary")}}
+        {{ form.submit_btn(class="btn mybtn")}}
     </form>
+
+{%if pokedata == False%}
+    <h1 class="notfound pokefont">No Pokemon was Found.</h1>
+{%endif%}
 {%if pokedata:%}
     <div class="poke-card card" style="width: 18rem;">
         <img src="{{pokedata.sprite_img}}" class="poke-img card-img-top" alt="pokemon image">
@@ -36,8 +51,6 @@
         </ul>
     </div>
 {%endif%}
-{%if pokedata == 404:%}
-    <h1>No Pokemon was Found</h1>
-{%endif%}
+
 
 {%endblock%}

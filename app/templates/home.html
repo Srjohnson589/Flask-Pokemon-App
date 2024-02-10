@@ -4,6 +4,18 @@
     Home
 {%endblock%}
 
+{%block nav%}
+<li class="nav-item">
+  <a class="nav-link mynavitems myactive" href="/home">Home</a>
+</li>
+<li class="nav-item">
+  <a class="nav-link mynavitems" href="/pokemon">Play</a>
+</li>
+<li class="nav-item">
+  <a class="nav-link mynavitems" href="/login">Login</a>
+</li>
+{%endblock%}
+
 {%block content%}
     <h1>Hello {{user}}!</h1>
 {%endblock%}

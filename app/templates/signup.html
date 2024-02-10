@@ -5,7 +5,19 @@
 {%endblock%}
 
 {%block styles%}
-    <link rel="stylesheet" href="../static/styles/login.css">
+    <link rel="stylesheet" href="../static/styles/signin.css">
+{%endblock%}
+
+{%block nav%}
+<li class="nav-item">
+  <a class="nav-link mynavitems" href="/home">Home </a>
+</li>
+<li class="nav-item">
+  <a class="nav-link mynavitems" href="/pokemon">Play</a>
+</li>
+<li class="nav-item">
+  <a class="nav-link mynavitems" href="/login">Login</a>
+</li>
 {%endblock%}
 
 {%block content%}
@@ -19,9 +31,7 @@
               <div class="mb-md-5 mt-md-4 pb-5">
               <form method="POST">
                 {{form.hidden_tag()}}
-                <h2 class="fw-bold mb-2 text-uppercase">Sign Up</h2>
-                <p class="text-white-50 mb-5">Please choose a username and password</p>
- 
+                <h2 class="fw-bold mb-2 text-uppercase pokefont">Sign Up</h2> 
                 <div class="form-outline form-white mb-4">
                   {{ form.username(class="form-control form-control-lg", id="typeUsernameX")}}
                   <label class="form-label" for="typeUsernameX">Username</label>

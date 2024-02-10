@@ -52,7 +52,7 @@ def pokemon_info(name_or_id):
             'abilities' : [data['abilities'][x]['ability']['name'] for x in range(0, len(data['abilities']))]
         }
         return info_dict
-    return 404
+    return False
 
 @app.route('/pokemon', methods=['GET','POST'])
 def pokemon():

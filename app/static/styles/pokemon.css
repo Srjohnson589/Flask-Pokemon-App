@@ -1,12 +1,14 @@
 
 .poke-form {
-    background-color: rgb(255, 242, 127);
+    background-color: rgb(255, 203, 5);
     margin: 60px auto;
-    padding: 40px 30px;
+    padding: 20px 30px;
     width: 50%;
     min-width: 400px;
-    border: 5px solid rgb(32, 32, 255);
+    border: 5px solid rgb(60, 90, 166);
     border-radius: 10px;
+    text-align: center;
+    font-size: 16px;
 }
 
 .poke-card {
@@ -34,3 +36,26 @@
     margin: 5px auto;
 }
 
+.pokefont {
+    font-size: 2rem;
+}
+
+.notfound {
+    text-align: center;
+}
+
+.mypokeimg {
+    height: 150px;
+    margin: -30px 0;
+}
+
+.myformcontrol {
+    font-size: 1.2rem;
+}
+
+.btn {
+    font-size: 1.1rem;
+    background-color: rgb(40, 59, 106);
+    border: 1px solid RGB(42, 117, 187);
+    color: white;
+}
