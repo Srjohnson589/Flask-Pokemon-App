@@ -4,9 +4,13 @@
     Home
 {%endblock%}
 
+{%block styles%}
+    <link rel="stylesheet" href="../static/styles/home.css">
+{%endblock%}
+
 {%block nav%}
 <li class="nav-item">
-  <a class="nav-link mynavitems myactive" href="/home">Home</a>
+  <a class="nav-link mynavitems myactive" href="/">Home</a>
 </li>
 <li class="nav-item">
   <a class="nav-link mynavitems" href="/pokemon">Play</a>
@@ -17,5 +21,5 @@
 {%endblock%}
 
 {%block content%}
-    <h1>Hello {{user}}!</h1>
+  <img class=welcome src="https://fontmeme.com/permalink/240211/f73b2674185af29e3bc747e87bd23d31.png" alt="pokemon-font" border="0"></a>
 {%endblock%}

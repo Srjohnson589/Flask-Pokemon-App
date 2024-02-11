@@ -1,16 +1,15 @@
-from flask import request, render_template
+from flask import request, render_template, redirect, url_for, flash
 import requests
 from app import app
 from .forms import PokemonInput, SignUpInput, LoginInput
+from app.models import User
+from werkzeug.security import check_password_hash
+from flask_login import login_user, logout_user
 
-# Home route, greeting page with or without a name
+# Home route, greeting page
 @app.route('/')
 def hello():
     return render_template('home.html')
-
-@app.route('/<user>')
-def greeting(user):
-     return render_template('home.html', user=user)
 
 # Login route
 @app.route('/login', methods=["GET", "POST"])
@@ -20,7 +19,10 @@ def login():
         username = form.username.data
         password = form.password.data
         submit_btn = form.submit_btn.data
-        return render_template('login.html', form=form, username=username, password=password, submit_btn=submit_btn)
+
+        queried_user = User.query.filter(User.email == email).first()
+        
+        return redirect(url_for('home'))
     else:
         return render_template('login.html', form=form)
 
@@ -33,7 +35,7 @@ def signup():
         email = form.email.data
         password = form.password.data
         submit_btn = form.submit_btn.data
-        return render_template('signup.html', form=form, username=username, email=email, password=password, submit_btn=submit_btn)
+        return redirect(url_for'login')
     else:
         return render_template('signup.html', form=form)
 
