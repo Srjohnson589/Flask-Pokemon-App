@@ -3,3 +3,16 @@
     padding-bottom: 20px;
 }
 
+.mycard {
+    padding: 30px!important;
+   }
+   
+.mycardtitle {
+    margin-bottom: 20px;
+    height: 60px;
+}
+
+.mycardcontent {
+    padding-bottom: 0!important;
+    margin-bottom: 10px!important;
+}

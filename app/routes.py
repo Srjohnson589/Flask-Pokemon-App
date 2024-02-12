@@ -8,7 +8,7 @@ from flask_login import login_user, logout_user
 
 # Home route, greeting page
 @app.route('/')
-def hello():
+def home():
     return render_template('home.html')
 
 # Login route
@@ -18,13 +18,23 @@ def login():
     if request.method == 'POST' and form.validate_on_submit():
         username = form.username.data
         password = form.password.data
-        submit_btn = form.submit_btn.data
 
-        queried_user = User.query.filter(User.email == email).first()
-        
-        return redirect(url_for('home'))
+        queried_user = User.query.filter(User.username == username).first()
+        if queried_user and check_password_hash(queried_user.password, password):
+            flash('Success! You have logged in.', 'success')
+            login_user(queried_user)
+            return redirect(url_for('home'))
+        else:
+            flash('Invalid username or password', 'danger')
+            return render_template('login.html', form=form)
     else:
         return render_template('login.html', form=form)
+
+# Logout
+@app.route("/logout")
+def logout():
+    logout_user()
+    return redirect(url_for('login'))
 
 # Signup route
 @app.route('/signup', methods=["GET", "POST"])
@@ -34,8 +44,10 @@ def signup():
         username = form.username.data
         email = form.email.data
         password = form.password.data
-        submit_btn = form.submit_btn.data
-        return redirect(url_for'login')
+        new_user = User(username, email, password)
+        new_user.save()
+        flash('Success! Thank you for signing up!', 'success')
+        return redirect(url_for('login'))
     else:
         return render_template('signup.html', form=form)
 
