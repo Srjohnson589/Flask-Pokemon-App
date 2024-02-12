@@ -2,6 +2,7 @@
 .poke-form {
     background-color: rgb(255, 203, 5);
     margin: auto;
+    margin-bottom: 30px;
     padding: 20px 30px;
     width: 50%;
     min-width: 400px;
