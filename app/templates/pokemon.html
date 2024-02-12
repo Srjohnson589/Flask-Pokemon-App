@@ -38,7 +38,7 @@
     <form class="poke-form" method="POST">
         {{ form.hidden_tag() }}
         <div class="mb-3">
-        <label for="exampleInputEmail1" class="form-label"><img class="form-label mypokeimg" src="https://cdn.freebiesupply.com/images/large/2x/pokemon-logo-black-transparent.png" alt="pokemon"></label>
+        <label for="exampleInputEmail1" class="form-label"><img class="form-label pokemontext" src="https://cdn.freebiesupply.com/images/large/2x/pokemon-logo-black-transparent.png" alt="pokemon"></label>
         {{ form.pokemon(class="myformcontrol form-control", id="exampleInputEmail1")}}
         <div id="emailHelp" class="form-text">(Name or number up to 1025)</div>
         </div>
@@ -50,16 +50,17 @@
 {%endif%}
 {%if pokedata:%}
     <div class="poke-card card" style="width: 18rem;">
-        <img src="{{pokedata.sprite_img}}" class="poke-img card-img-top" alt="pokemon image">
         <div class="mytitle card-body">
-            <h5 class="card-title">{{pokedata.name}}</h5>
+            <h5 class="mytitle card-title">{{pokedata.name}}</h5>
         </div>
+        <img src="{{pokedata.sprite_img}}" class="poke-img card-img-top" alt="pokemon image">
         <ul class="list-group list-group-flush">
-            <li class="list-group-item">HP: {{pokedata.hp}}</li>
-            <li class="list-group-item">Defense: {{pokedata.defense}}</li>
-            <li class="list-group-item">Attack: {{pokedata.attack}}</li>
-            <li class="poke-abil list-group-item">Abilities: {%for ability in pokedata.abilities%}
-                <a href="https://pokemondb.net/ability/{{ability}}" target="_blank">{{ ability }}</a> &#8226;
+            <li class="mylist list-group-item">HP: {{pokedata.hp}}</li>
+            <li class="mylist list-group-item">Defense: {{pokedata.defense}}</li>
+            <li class="mylist list-group-item">Attack: {{pokedata.attack}}</li>
+            <li class="mylist poke-abil list-group-item">Abilities: {%for ability in pokedata.abilities%}
+                <a href="https://pokemondb.net/ability/{{ability}}" target="_blank">{{ ability }}</a>
+                {%if ability != pokedata.abilities[-1]%} &#8226;{%endif%}
                 {%endfor%}
             </li>
         </ul>

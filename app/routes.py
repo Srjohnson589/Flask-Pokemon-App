@@ -44,10 +44,21 @@ def signup():
         username = form.username.data
         email = form.email.data
         password = form.password.data
+        
+        queried_user = User.query.filter(User.username == username).first()
+        if queried_user:
+            flash('Username already exists. Please choose another.', 'danger')
+            return render_template('signup.html', form=form)
+        queried_email = User.query.filter(User.email == email).first()
+        if queried_email:
+            flash('Email already exists.', 'danger')
+            return render_template('signup.html', form=form)
+        
         new_user = User(username, email, password)
         new_user.save()
         flash('Success! Thank you for signing up!', 'success')
         return redirect(url_for('login'))
+        
     else:
         return render_template('signup.html', form=form)
 

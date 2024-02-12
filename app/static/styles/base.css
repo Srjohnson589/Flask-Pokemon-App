@@ -22,7 +22,7 @@
 .maindiv{
     height: 100vh;
     padding-top: 40px;
-    background: linear-gradient(to bottom, rgba(255, 205, 5, 0.33), rgba(255, 205, 5, 0.40));
+    background: linear-gradient(to bottom, rgb(252, 241, 198), rgb(251, 231, 152));
     margin: 0;
 }
 

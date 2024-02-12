@@ -16,7 +16,7 @@
     background-color: rgb(209, 252, 252);
     border: 6px solid rgb(114, 159, 255);
     margin: 0 auto 40px auto;
-    padding: 10px;
+    padding: 20px;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
@@ -29,12 +29,14 @@
 }
 
 .mytitle {
-    padding: 0 20px!important;
+    padding: 0!important;
+    margin: 0!important;
+    font-size: 2rem;
 }
 
 .poke-img {
-    width: 50%;
-    margin: 5px auto;
+    width: 65%;
+    margin: -10px auto;
 }
 
 .pokefont {
@@ -45,7 +47,7 @@
     text-align: center;
 }
 
-.mypokeimg {
+.pokemontext {
     height: 150px;
     margin: -30px 0;
 }
@@ -59,4 +61,10 @@
     background-color: rgb(40, 59, 106);
     border: 1px solid RGB(42, 117, 187);
     color: white;
+}
+
+.mylist {
+    border: none;
+    font-size: 1.2rem;
+    padding: 2px 10px!important;
 }
