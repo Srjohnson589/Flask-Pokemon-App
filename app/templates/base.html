@@ -20,18 +20,8 @@
     {%block styles%}{%endblock%}
 </head>
 <body>
-  <nav class="navbar navbar-expand-lg navbar-light mynavbar">
-    <a class="navbar-brand" href="/">
-      <img class="mylogo" src="../static/img/Pokemon-Pokeball-PNG-Image.png" alt="pokemon">
-    </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-        {%block nav%}
-        {%endblock%}
-    </div>
-  </nav>
+  {%include './includes/nav.html'%}
+  
   <div class="maindiv">
     {% with messages = get_flashed_messages(with_categories=true) %}
     {% if messages %}

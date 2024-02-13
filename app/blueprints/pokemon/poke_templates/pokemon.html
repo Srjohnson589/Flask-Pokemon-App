@@ -8,32 +8,6 @@
 <link rel="stylesheet" href="../static/styles/pokemon.css">
 {%endblock%}
 
-{%block nav%}
-<ul class="navbar-nav">
-    <li class="nav-item">
-    <a class="nav-link mynavitems" href="/">Home </a>
-    </li>
-    <li class="nav-item">
-    <a class="nav-link mynavitems myactive" href="{{url_for('pokemon')}}">Play</a>
-    </li>
-    {% if current_user.is_anonymous %}
-    <li class="nav-item">
-        <a class="nav-link mynavitems" href="{{ url_for('login')}}">Login</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link mynavitems" href="{{ url_for('signup')}}">Sign Up</a>
-    </li>
-    {%else%}
-    <li class="nav-item">
-        <a class="nav-link mynavitems" href="{{ url_for('logout')}}">Logout</a>
-    </li>
-    {%endif%}
-</ul>
-{% if current_user.is_authenticated %}
-<h5 class="username">{{ current_user.username }}</h5>
-{%endif%}
-{%endblock%}
-
 {%block content%}
     <form class="poke-form" method="POST">
         {{ form.hidden_tag() }}
@@ -65,6 +39,7 @@
             </li>
         </ul>
     </div>
+    <button>Catch!</button>
 {%endif%}
 
 

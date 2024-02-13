@@ -1,18 +1,13 @@
-from flask import request, render_template, redirect, url_for, flash
-import requests
-from app import app
-from .forms import PokemonInput, SignUpInput, LoginInput
-from app.models import User
+from . import auth
+from .forms import LoginInput, SignUpInput
+from flask import request, render_template, url_for, redirect, flash
+from flask_login import login_user,logout_user, login_required
 from werkzeug.security import check_password_hash
-from flask_login import login_user, logout_user
+from app.models import User
 
-# Home route, greeting page
-@app.route('/')
-def home():
-    return render_template('home.html')
 
 # Login route
-@app.route('/login', methods=["GET", "POST"])
+@auth.route('/login', methods=["GET", "POST"])
 def login():
     form = LoginInput()
     if request.method == 'POST' and form.validate_on_submit():
@@ -23,7 +18,7 @@ def login():
         if queried_user and check_password_hash(queried_user.password, password):
             flash('Success! You have logged in.', 'success')
             login_user(queried_user)
-            return redirect(url_for('home'))
+            return redirect(url_for('pokemon.home'))
         else:
             flash('Invalid username or password', 'danger')
             return render_template('login.html', form=form)
@@ -31,13 +26,14 @@ def login():
         return render_template('login.html', form=form)
 
 # Logout
-@app.route("/logout")
+@auth.route("/logout")
+@login_required
 def logout():
     logout_user()
-    return redirect(url_for('login'))
+    return redirect(url_for('auth.login'))
 
 # Signup route
-@app.route('/signup', methods=["GET", "POST"])
+@auth.route('/signup', methods=["GET", "POST"])
 def signup():
     form = SignUpInput()
     if request.method == 'POST' and form.validate_on_submit():
@@ -57,34 +53,7 @@ def signup():
         new_user = User(username, email, password)
         new_user.save()
         flash('Success! Thank you for signing up!', 'success')
-        return redirect(url_for('login'))
+        return redirect(url_for('auth.login'))
         
     else:
         return render_template('signup.html', form=form)
-
-# Pokemon API function and route to get and return info
-def pokemon_info(name_or_id):
-    url = f'https://pokeapi.co/api/v2/pokemon/{name_or_id}'
-    response = requests.get(url)
-    if response.ok:
-        data = response.json()
-        info_dict = {
-            'name' : data['name'].title(),
-            'hp': data['stats'][0]['base_stat'],
-            'attack': data['stats'][1]['base_stat'],
-            'defense': data['stats'][2]['base_stat'],
-            'sprite_img': data['sprites']['front_shiny'],
-            'abilities' : [data['abilities'][x]['ability']['name'] for x in range(0, len(data['abilities']))]
-        }
-        return info_dict
-    return False
-
-@app.route('/pokemon', methods=['GET','POST'])
-def pokemon():
-    form = PokemonInput()
-    if request.method == 'POST' and form.validate_on_submit():
-        pokemon = form.pokemon.data
-        pokedata = pokemon_info(pokemon)
-        return render_template('pokemon.html', pokedata=pokedata, form=form)
-    else:
-        return render_template('pokemon.html', form=form)

@@ -8,31 +8,7 @@
     <link rel="stylesheet" href="../static/styles/home.css">
 {%endblock%}
 
-{%block nav%}
-<ul class="navbar-nav">
-  <li class="nav-item">
-    <a class="nav-link mynavitems myactive" href="/">Home</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link mynavitems" href="{{ url_for('pokemon')}}">Play</a>
-  </li>
-  {% if current_user.is_anonymous %}
-  <li class="nav-item">
-    <a class="nav-link mynavitems" href="{{ url_for('login')}}">Login</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link mynavitems" href="{{ url_for('signup')}}">Sign Up</a>
-  </li>
-  {%else%}
-  <li class="nav-item">
-    <a class="nav-link mynavitems" href="{{ url_for('logout')}}">Logout</a>
-  </li>
-  {%endif%}
-</ul>
-{% if current_user.is_authenticated %}
-<h5 class="username">{{ current_user.username }}</h5>
-{%endif%}
-{%endblock%}
+
 
 {%block content%}
   <img class=welcome src="https://fontmeme.com/permalink/240211/f73b2674185af29e3bc747e87bd23d31.png" alt="pokemon-font" border="0"></a>
