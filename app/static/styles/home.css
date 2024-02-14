@@ -6,3 +6,8 @@ body {
     width: 65%;
     margin: 20vh auto;
 }
+
+.battleimg {
+    width: 200px;
+    border-radius: 25px;
+}

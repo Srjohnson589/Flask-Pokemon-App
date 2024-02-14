@@ -11,5 +11,17 @@
 
 
 {%block content%}
-  <img class=welcome src="https://fontmeme.com/permalink/240211/f73b2674185af29e3bc747e87bd23d31.png" alt="pokemon-font" border="0"></a>
+  <img class="battleimg" src="../static/img/trainersbattling.png" alt="trainers battling">
+  <img class="welcome" src="https://fontmeme.com/permalink/240211/f73b2674185af29e3bc747e87bd23d31.png" alt="pokemon-font" border="0">
+  {%if current_user.is_anonymous%}
+  <div>
+    <a href="{{ url_for('auth.login')}}">Login</a>
+    <a href="{{ url_for('auth.signup')}}">Sign Up</a>
+  </div>
+  {%elif current_user.is_authenticated%}
+  <div>
+    <a href="#">Catch</a>
+    <a href="#">Battle</a>
+  </div>
+  {%endif%}
 {%endblock%}
