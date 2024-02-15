@@ -1,6 +1,8 @@
 from . import pokemon
-from flask import render_template, request
+from flask import render_template, request, redirect, url_for, flash
 from .forms import PokemonInput
+from flask_login import current_user, login_required, LoginManager
+from app.models import db, Pokemon, User, user_pokemon
 import requests
 
 
@@ -33,6 +35,16 @@ def pokemon():
     if request.method == 'POST' and form.validate_on_submit():
         pokemon = form.pokemon.data
         pokedata = pokemon_info(pokemon)
-        return render_template('pokemon.html', pokedata=pokedata, form=form)
+        if form.submit_btn.data:
+            return render_template('pokemon.html', pokedata=pokedata, form=form)
+        if form.catch_btn.data:
+            if not Pokemon.query.get(pokedata['name']):
+                newpoke = Pokemon(pokedata['name'], pokedata['hp'], pokedata['attack'], pokedata['defense'], pokedata['sprite_img'])
+                newpoke.save()
+            user_pokemon.name = pokedata['name']
+            user_pokemon.user_id = current_user.user_id
+            flash(f'{newpoke.name} caught!', 'success')
+            return redirect(url_for('pokemon.pokemon')) 
     else:
         return render_template('pokemon.html', form=form)
+    

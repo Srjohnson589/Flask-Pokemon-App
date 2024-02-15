@@ -2,12 +2,46 @@ body {
     text-align: center;
 }
 
-.welcome {
+.myhomediv {
     width: 65%;
-    margin: 20vh auto;
+    margin: 5vh auto;
+}
+
+.welcome {
+    width: 100%;
+    margin: 10px auto;
 }
 
 .battleimg {
+    display: block;
+    margin: 10px auto;
+    width: 30%;
+    border-radius: 35%;
+}
+
+.homeflex {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.homeflex a {
+    text-decoration: none;
     width: 200px;
-    border-radius: 25px;
+    height: 200px;
+    margin: 10px;
+    padding: 50px 25px;   
+    background-color: rgb(248, 251, 254);
+    font-family: 'Pokemon Solid', sans-serif;
+    font-size: 2rem;
+    color: rgb(32, 94, 152);
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+}
+
+.homeflex a:hover, .homeflex a:active {
+    text-decoration: none;
+    background-color: rgb(224, 239, 254);
+    color: rgb(40, 116, 187);
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
 }

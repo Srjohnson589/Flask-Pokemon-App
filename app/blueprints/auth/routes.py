@@ -16,7 +16,7 @@ def login():
 
         queried_user = User.query.filter(User.username == username).first()
         if queried_user and check_password_hash(queried_user.password, password):
-            flash('Success! You have logged in.', 'success')
+            flash(f'Success! Welcome {username}, you have logged in.', 'success')
             login_user(queried_user)
             return redirect(url_for('pokemon.home'))
         else:

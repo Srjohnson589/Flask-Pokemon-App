@@ -4,11 +4,23 @@ from werkzeug.security import generate_password_hash
 
 db = SQLAlchemy()
 
+user_pokemon = db.Table(
+    'user_pokemon',
+    db.Column('user_id', db.Integer, db.ForeignKey('user.id')),
+    db.Column('name', db.String, db.ForeignKey('pokemon.name'))
+)
+
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String, unique=True, nullable=False)
     email = db.Column(db.String, unique=True, nullable=False)
     password = db.Column(db.String, nullable=False)
+    caught = db.relationship('Pokemon',
+                             seconday= user_pokemon,
+                             primaryjoin = (user_pokemon.columns.user_id == id),
+                             secondaryjoin = (user_pokemon.columns.name == pokemon.name),
+                             backref="caught",
+                             lazy="dynamic")
 
     def __init__(self, username, email, password):
         self.username = username
@@ -25,15 +37,13 @@ class Pokemon(db.Model):
     attack = db.Column(db.Integer, nullable=False)
     defense = db.Column(db.Integer, nullable=False)
     sprite_img = db.Column(db.String, nullable=False)
-    abilities = db.Column(db.String, nullable=False)
 
-    def __init__(self, name, hp, attack, defense, sprite_img, abilities):
+    def __init__(self, name, hp, attack, defense, sprite_img):
         self.name = name
         self.hp = hp
         self.attack = attack
         self.defense = defense
         self.sprite_img = sprite_img
-        self.abilities = abilities
 
     def save(self):
         db.session.add(self)

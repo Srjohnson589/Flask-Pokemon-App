@@ -22,7 +22,7 @@
         </ul>
         {%endif%}
 
-         <!-- Right Side -->
+         <!-- Right Side - *NEEDS FIXED IF TIME* -->
         {% if current_user.isanonymous and request.path == "signup"%}
         <a class="nav-link mynavitems {%if request.path == '/login'%}myactive{%endif%}" href="{{ url_for('auth.login')}}">Login</a>
         

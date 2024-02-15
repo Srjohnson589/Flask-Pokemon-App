@@ -10,10 +10,10 @@
     </div>
     <img src="{{pokedata.sprite_img}}" class="poke-img card-img-top" alt="pokemon image">
     <ul class="list-group list-group-flush">
-        <li class="mylist list-group-item">HP: {{pokedata.hp}}</li>
-        <li class="mylist list-group-item">Defense: {{pokedata.defense}}</li>
-        <li class="mylist list-group-item">Attack: {{pokedata.attack}}</li>
-        <li class="mylist poke-abil list-group-item">Abilities: {%for ability in pokedata.abilities%}
+        <li class="mylist list-group-item">HP {{pokedata.hp}}</li>
+        <li class="mylist list-group-item">Defense {{pokedata.defense}}</li>
+        <li class="mylist list-group-item">Attack {{pokedata.attack}}</li>
+        <li class="mylist poke-abil list-group-item">Abilities &#8226;{%for ability in pokedata.abilities%}
             <a href="https://pokemondb.net/ability/{{ability}}" target="_blank">{{ ability }}</a>
             {%if ability != pokedata.abilities[-1]%} &#8226;{%endif%}
             {%endfor%}

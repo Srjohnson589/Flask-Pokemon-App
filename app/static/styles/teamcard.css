@@ -1,0 +1,8 @@
+.team-card {
+    width: 200px;
+    height: 300px;
+    margin: 10px;
+    background-color: rgba(200, 199, 199, 0.32);
+    border: 2px solid rgba(128, 128, 128, 0.458);
+}
+

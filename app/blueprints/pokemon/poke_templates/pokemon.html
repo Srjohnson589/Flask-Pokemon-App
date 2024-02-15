@@ -6,6 +6,7 @@
 
 {%block styles%}
 <link rel="stylesheet" href="../static/styles/pokemon.css">
+<link rel="stylesheet" href="../static/styles/teamcard.css">
 {%endblock%}
 
 {%block content%}
@@ -19,18 +20,24 @@
             <div id="emailHelp" class="form-text">(Name or number up to 1025)</div>
             </div>
             {{ form.submit_btn(class="btn mybtn")}}
+            {{ form.catch_btn(class="btn mybtn")}}
         </form>
     </div>
     <div class="searchedcard">
-        {%include 'searchcard.html'%}
+        {%include 'includes/searchcard.html'%}
     </div>
 </div>
 <div class="bottomhalf">
-    {%include 'caughtcard.html'%}
-    {%include 'caughtcard.html'%}
-    {%include 'caughtcard.html'%}
-    {%include 'caughtcard.html'%}
-    {%include 'caughtcard.html'%}
-    {%include 'caughtcard.html'%}
+    {%include 'includes/teamcard.html'%}
+    {%include 'includes/teamcard.html'%}
+    {%include 'includes/teamcard.html'%}
+    {%include 'includes/teamcard.html'%}
+    {%include 'includes/teamcard.html'%}
+    {%include 'includes/teamcard.html'%}
 </div>
+{%if current_user.is_anonymous%}
+<div class="signinsign">
+    <h5>To catch Pokemon <a href="{{url_for('auth.login')}}">Login</a> or <a href="{{url_for('auth.signup')}}">Sign Up</a></h5>
+</div>
+{%endif%}
 {%endblock%}
