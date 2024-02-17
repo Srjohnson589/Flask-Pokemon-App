@@ -18,7 +18,7 @@ def login():
         if queried_user and check_password_hash(queried_user.password, password):
             flash(f'Success! Welcome {username}, you have logged in.', 'success')
             login_user(queried_user)
-            return redirect(url_for('pokemon.home'))
+            return redirect(url_for('pokesearch.home'))
         else:
             flash('Invalid username or password', 'danger')
             return render_template('login.html', form=form)

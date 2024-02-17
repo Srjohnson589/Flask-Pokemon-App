@@ -23,8 +23,8 @@
   </div>
   {%elif current_user.is_authenticated%}
   <div class="homeflex pokefont">
-    <a class="homebtn" href="{{ url_for('pokemon.pokemon')}}">Catch</a>
-    <a class="homebtn" href="#">Battle</a>
+    <a class="homebtn" href="{{ url_for('pokesearch.get_pokemon')}}">Catch</a>
+    <a class="homebtn" href="{{url_for('pokesearch.battle')}}">Battle</a>
   </div>
   {%endif%}
 {%endblock%}

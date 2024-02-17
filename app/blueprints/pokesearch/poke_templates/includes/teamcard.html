@@ -1,19 +1,16 @@
 
-{%for i in range(0, 6)%}
-{%if current_user.caught_pokemon[i]%}
-    
+{%for pokemon in current_user.caught_pokemon%}
     <div class="team-card filled-card card style="width: 14rem;">
         <div class="team-title card-body">
-            <h5 class="team-title card-title">{{current_user.caught_pokemon[i].name}}</h5>
+            <h5 class="team-title card-title">{{pokemon.name}}</h5>
         </div>
-        <img src="{{current_user.caught_pokemon[i].sprite_img}}" class="team-img card-img-top" alt="">
+        <img src="{{pokemon.sprite_img}}" class="team-img card-img-top" alt="">
         <ul class="list-group list-group-flush">
-            <li class="myteamlist list-group-item">HP {{current_user.caught_pokemon[i].hp}}</li>
-            <li class="myteamlist list-group-item">Defense {{current_user.caught_pokemon[i].defense}}</li>
-            <li class="myteamlist list-group-item">Attack {{current_user.caught_pokemon[i].attack}}</li>
+            <li class="myteamlist list-group-item">HP {{pokemon.hp}}</li>
+            <li class="myteamlist list-group-item">Defense {{pokemon.defense}}</li>
+            <li class="myteamlist list-group-item">Attack {{pokemon.attack}}</li>
         </ul>
-        <a href="" class="releasebtn">Release</a>
-        
+        <a href="{{url_for('pokesearch.release', poke_name=pokemon.name)}}" class="releasebtn">Release</a>
     </div>
 {%else%}
     <div class="team-card blank-card card">
@@ -27,5 +24,4 @@
             <li class="myteamlist list-group-item">Attack </li>
         </ul>
     </div>
-{%endif%}
 {%endfor%}

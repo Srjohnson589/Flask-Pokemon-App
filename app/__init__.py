@@ -20,11 +20,11 @@ login_manager.login_message_category = 'warning'
 
 #import blueprint into app
 from app.blueprints.auth import auth
-from app.blueprints.pokemon import pokemon
+from app.blueprints.pokesearch import pokesearch
 
 #register blueprint
 app.register_blueprint(auth)
-app.register_blueprint(pokemon)
+app.register_blueprint(pokesearch)
 
 @login_manager.user_loader
 def load_user(user_id):

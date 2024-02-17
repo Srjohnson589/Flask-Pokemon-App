@@ -17,7 +17,11 @@
             </li>
             {% if current_user.is_anonymous %}
             <li class="nav-item">
-                <a class="nav-link mynavitems {%if request.path == '/pokemon'%}myactive{%endif%}" href="{{ url_for('pokemon.pokemon')}}">Search</a>
+                <a class="nav-link mynavitems {%if request.path == '/get_pokemon'%}myactive{%endif%}" href="{{ url_for('pokesearch.get_pokemon')}}">Search</a>
+            </li>
+            {% elif current_user.is_authenticated %}
+            <li class="nav-item">
+                <a class="nav-link mynavitems {%if request.path == '/battle'%}myactive{%endif%}" href="{{ url_for('pokesearch.get_pokemon')}}">Catch</a>
             </li>
         </ul>
         {%endif%}

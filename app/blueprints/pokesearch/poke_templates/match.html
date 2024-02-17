@@ -1,0 +1,22 @@
+{%extends 'base.html'%}
+
+{%block title%}
+    {{current_user}} v. {{opponent}}
+{%endblock%}
+
+{%block styles%}
+{%endblock%}
+
+{%block content%}
+<div class="myhomediv">
+    <h5 class="pokefont">{{current_user}} vs. {{opponent}}</h5>
+</div>
+
+<div>
+    <h6>My Pokemon</h6>
+    {%for pokemon in current_user.caught_pokemon%}
+    <a href="">{{pokemon.name}}</a>
+    {%endfor%}
+</div>
+
+{%endblock%}
