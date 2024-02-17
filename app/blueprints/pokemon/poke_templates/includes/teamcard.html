@@ -1,15 +1,31 @@
 
-
-<div class="team-card card">
-    {%if current_user.is_authenticated%}
-    <div class="team-title card-body">
-        <h5 class="team-title card-title"></h5>
+{%for i in range(0, 6)%}
+{%if current_user.caught_pokemon[i]%}
+    
+    <div class="team-card filled-card card style="width: 14rem;">
+        <div class="team-title card-body">
+            <h5 class="team-title card-title">{{current_user.caught_pokemon[i].name}}</h5>
+        </div>
+        <img src="{{current_user.caught_pokemon[i].sprite_img}}" class="team-img card-img-top" alt="">
+        <ul class="list-group list-group-flush">
+            <li class="myteamlist list-group-item">HP {{current_user.caught_pokemon[i].hp}}</li>
+            <li class="myteamlist list-group-item">Defense {{current_user.caught_pokemon[i].defense}}</li>
+            <li class="myteamlist list-group-item">Attack {{current_user.caught_pokemon[i].attack}}</li>
+        </ul>
+        <a href="" class="releasebtn">Release</a>
+        
     </div>
-    <img src="" class="team-img card-img-top" alt="">
-    <ul class="list-group list-group-flush">
-        <li class="myteamlist list-group-item">HP </li>
-        <li class="myteamlist list-group-item">Defense </li>
-        <li class="myteamlist list-group-item">Attack </li>
-    </ul>
-    {%endif%}
-</div>
+{%else%}
+    <div class="team-card blank-card card">
+        <div class="team-title card-body">
+            <h5 class="team-title card-title"></h5>
+        </div>
+        <img src="" class="team-img card-img-top" alt="">
+        <ul class="list-group list-group-flush">
+            <li class="myteamlist list-group-item">HP </li>
+            <li class="myteamlist list-group-item">Defense </li>
+            <li class="myteamlist list-group-item">Attack </li>
+        </ul>
+    </div>
+{%endif%}
+{%endfor%}

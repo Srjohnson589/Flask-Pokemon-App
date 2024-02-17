@@ -4,12 +4,12 @@
 {%endif%}
 
 {%if pokedata:%}
-<div class="poke-card card" style="width: 18rem;">
+<div class="poke-card card" style="width: 14rem;">
     <div class="mytitle card-body">
         <h5 class="mytitle card-title">{{pokedata.name}}</h5>
     </div>
     <img src="{{pokedata.sprite_img}}" class="poke-img card-img-top" alt="pokemon image">
-    <ul class="list-group list-group-flush">
+    <ul class="mylistgroup list-group list-group-flush">
         <li class="mylist list-group-item">HP {{pokedata.hp}}</li>
         <li class="mylist list-group-item">Defense {{pokedata.defense}}</li>
         <li class="mylist list-group-item">Attack {{pokedata.attack}}</li>

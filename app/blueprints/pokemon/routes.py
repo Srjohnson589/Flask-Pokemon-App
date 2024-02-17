@@ -41,10 +41,22 @@ def pokemon():
             if not Pokemon.query.get(pokedata['name']):
                 newpoke = Pokemon(pokedata['name'], pokedata['hp'], pokedata['attack'], pokedata['defense'], pokedata['sprite_img'])
                 newpoke.save()
-            user_pokemon.name = pokedata['name']
-            user_pokemon.user_id = current_user.user_id
-            flash(f'{newpoke.name} caught!', 'success')
-            return redirect(url_for('pokemon.pokemon')) 
+            if pokedata['name'] in current_user.caught_pokemon or len(current_user.caught_pokemon.all()) >= 6:
+                flash(f'Pokemon already caught! Release one to catch another.', 'danger')
+                return redirect(url_for('pokemon.pokemon'))
+            else:
+                caughtpoke = Pokemon.query.get(pokedata['name'])
+                current_user.caught_pokemon.append(caughtpoke)
+                db.session.commit()
+                flash(f'{caughtpoke.name} caught!', 'success')
+                return redirect(url_for('pokemon.pokemon'))
     else:
         return render_template('pokemon.html', form=form)
-    
+
+
+@pokemon.route('/release/<name>')
+def uncatch(name):
+    current_user.caught_pokemon.remove(name)
+    db.session.commit()
+    flash(f'{name} has been released!', 'success')
+    return redirect(url_for('pokemon.pokemon'))

@@ -15,11 +15,9 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String, unique=True, nullable=False)
     email = db.Column(db.String, unique=True, nullable=False)
     password = db.Column(db.String, nullable=False)
-    caught = db.relationship('Pokemon',
-                             seconday= user_pokemon,
-                             primaryjoin = (user_pokemon.columns.user_id == id),
-                             secondaryjoin = (user_pokemon.columns.name == pokemon.name),
-                             backref="caught",
+    caught_pokemon = db.relationship('Pokemon',
+                             secondary=user_pokemon,
+                             backref="caught_by",
                              lazy="dynamic")
 
     def __init__(self, username, email, password):
