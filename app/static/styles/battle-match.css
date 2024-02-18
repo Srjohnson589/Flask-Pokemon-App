@@ -31,10 +31,6 @@ body {
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
-.userdivs a {
-    
-}
-
 .userdivs a:hover, .userdivs a:active{
     text-decoration: none;
 }
