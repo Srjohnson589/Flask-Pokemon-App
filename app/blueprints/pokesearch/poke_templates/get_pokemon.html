@@ -27,6 +27,9 @@
         {%include 'includes/searchcard.html'%}
     </div>
 </div>
+{%if current_user.is_authenticated%}
+<h5 class="catchsix">Catch six Pokemon to be able to Battle!</h5>
+{%endif%}
 <div class="bottomhalf">
     {%include 'includes/teamcard.html'%}
 </div>

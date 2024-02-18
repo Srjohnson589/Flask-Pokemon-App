@@ -64,14 +64,56 @@ def release(poke_name):
     flash(f'{poke_name} has been released!', 'success')
     return redirect(url_for('pokesearch.get_pokemon'))
 
-@pokesearch.route('/battle')
+@pokesearch.route('/battlehome')
 @login_required
-def battle():
-    users = User.query.filter(User.id != current_user.id)
-    return render_template('battle.html', users=users)
+def battlehome():
+    otherusers = User.query.filter(User.id != current_user.id)
+    users = []
+    for user in otherusers:
+        if len(user.caught_pokemon.all()) == 6:
+            users.append(user)
+    return render_template('battlehome.html', users=users)
 
-@pokesearch.route('/match/<user_id>')
+@pokesearch.route('/vs/<user_id>')
 @login_required
-def match(user_id):
-    opponent = User.query.get(user_id)
-    return render_template('match.html', opponent=opponent)
+def vs(user_id):
+        opponent = User.query.get(user_id)
+        return render_template('vs.html', opponent=opponent)
+
+@pokesearch.route('/finishedvs/<opponent>')
+@login_required
+def finishedvs(opponent):
+        opp = User.query.get(opponent)
+        o_p_list = opp.caught_pokemon.all()
+        opp_total_hp = 0
+        opp_total_defense = 0
+        opp_total_attack = 0
+        for p in o_p_list:
+            opp_total_hp += p.hp
+            opp_total_defense += p.defense
+            opp_total_attack += p.attack
+        cu_p_list = current_user.caught_pokemon.all()
+        cu_total_hp = 0
+        cu_total_defense = 0
+        cu_total_attack = 0
+        for p in cu_p_list:
+            cu_total_hp += p.hp
+            cu_total_defense += p.defense
+            cu_total_attack += p.attack
+
+        ## TOTAL HP - (TOTAL ATTACK undergone - TOTAL DEFENSE) = FINAL HP
+        cu_final_hp = cu_total_hp - (opp_total_attack - cu_total_defense)
+        opp_final_hp = opp_total_hp - (cu_total_attack - opp_total_defense)
+
+        ## GREATER FINAL HP WINS
+        if cu_final_hp > opp_final_hp:
+            flash(f'{current_user.username} won!', 'success')
+            return render_template('finishedvs.html', opponent=opp)
+        elif cu_final_hp == opp_final_hp:
+            flash("It's a tie!", 'success')
+            return render_template('finishedvs.html', opponent=opp)
+        else:
+            flash(f'{opp.username} won!', 'danger')
+            return render_template('finishedvs.html', opponent=opp)
+
+    

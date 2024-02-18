@@ -6,9 +6,6 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
-        <!-- Special Match Nav Bar -->
-        {% if request.path == 'match' %}
-        {%endif%}
 
         <!-- Left Side -->
         <ul class="navbar-nav">
@@ -19,12 +16,15 @@
             <li class="nav-item">
                 <a class="nav-link mynavitems {%if request.path == '/get_pokemon'%}myactive{%endif%}" href="{{ url_for('pokesearch.get_pokemon')}}">Search</a>
             </li>
-            {% elif current_user.is_authenticated %}
+            {% elif current_user.is_authenticated%}
             <li class="nav-item">
-                <a class="nav-link mynavitems {%if request.path == '/battle'%}myactive{%endif%}" href="{{ url_for('pokesearch.get_pokemon')}}">Catch</a>
+                <a class="nav-link mynavitems {%if request.path == '/get_pokemon'%}myactive{%endif%}" href="{{ url_for('pokesearch.get_pokemon')}}">Catch</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link mynavitems {%if request.path == '/battlehome'%}myactive{%endif%}" href="{{ url_for('pokesearch.battlehome')}}">Battle</a>
+            </li>
+            {%endif%}
         </ul>
-        {%endif%}
 
          <!-- Right Side - *NEEDS FIXED IF TIME* -->
         {% if current_user.isanonymous and request.path == "signup"%}

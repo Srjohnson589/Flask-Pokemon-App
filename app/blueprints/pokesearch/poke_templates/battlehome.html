@@ -1,0 +1,21 @@
+{%extends 'base.html'%}
+
+{%block title%}
+    Battle
+{%endblock%}
+
+{%block styles%}
+<link rel="stylesheet" href="../static/styles/battle-match.css">
+{%endblock%}
+
+{%block content%}
+<div class="myhomediv">
+    <h5 class="pokefont pickbattle">Pick your battle!</h5>
+</div>
+{%for user in users%}
+    <div class="userdivs">
+        <a href="{{url_for('pokesearch.vs', user_id=user.id)}}">{{user.username}}</a>
+    </div>
+{%endfor%}
+
+{%endblock%}

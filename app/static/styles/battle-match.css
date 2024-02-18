@@ -1,0 +1,66 @@
+body {
+    text-align: center;
+}
+
+.pickbattle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: red;
+    margin: 10px auto;
+    height: 150px;
+    width: 300px;
+    border: 2px solid black;
+    border-radius: 50%;
+    font-size: 2rem;
+}
+
+.pickbattle h5 {
+    margin: 50% 0;
+}
+
+.userdivs {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255, 240, 240, 0.936);
+    height: 3rem;
+    width: 80%;
+    margin: 10px auto;
+    font-size: 1.5rem;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.userdivs a {
+    
+}
+
+.userdivs a:hover, .userdivs a:active{
+    text-decoration: none;
+}
+
+.userdivs:hover, .userdivs:active {
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+    border: 2px solid rgb(95, 208, 246);
+}
+
+.battlebtn {
+    background-color: red;
+    margin-bottom: 100px;
+    font-size: 2.1rem;
+    padding: 5px 20px;
+    border-radius: 5px;
+    color: white;
+    box-shadow: rgba(240, 46, 46, 0.4) 5px 5px, rgba(240, 49, 46, 0.3) 10px 10px, rgba(240, 53, 46, 0.2) 15px 15px, rgba(240, 46, 46, 0.1) 20px 20px, rgba(240, 46, 46, 0.05) 25px 25px;
+}
+
+.battlebtn:hover, .battlebtn:active {
+    text-decoration: none;
+    color: rgb(46, 56, 240);
+    box-shadow: rgba(46, 56, 240, 0.4) 5px 5px, rgba(46, 56, 240, 0.3) 10px 10px, rgba(46, 56, 240, 0.2) 15px 15px, rgba(46, 56, 240, 0.1) 20px 20px, rgba(46, 56, 240, 0.05) 25px 25px;
+}
+
+.namespokemon {
+    margin-top: 10px;
+    font-size: 2rem;
+}

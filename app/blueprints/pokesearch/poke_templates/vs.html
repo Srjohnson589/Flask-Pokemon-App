@@ -1,0 +1,46 @@
+{%extends 'base.html'%}
+
+{%block title%}
+    {{current_user.username}} v. {{opponent.username}}
+{%endblock%}
+
+{%block styles%}
+<link rel="stylesheet" href="../static/styles/get_pokemon.css">
+<link rel="stylesheet" href="../static/styles/teamcard.css">
+<link rel="stylesheet" href="../static/styles/battle-match.css">
+{%endblock%}
+
+{%block content%}
+<div class="myhomediv">
+    <h5 class="pokefont">{{current_user.username}} vs. {{opponent.username}}</h5>
+</div>
+
+<a class="battlebtn" href="{{url_for('pokesearch.finishedvs', opponent=opponent.id)}}">Battle</a>
+
+<h6 class="namespokemon">{{current_user.username}}'s Pokemon</h6>
+<div class="bottomhalf">
+    {%for pokemon in current_user.caught_pokemon%}
+    <div class="team-card filled-card card style="width: 14rem;">
+        <div class="team-title card-body">
+            <h5 class="team-title card-title">{{pokemon.name}}</h5>
+        </div>
+        <img src="{{pokemon.sprite_img}}" class="team-img card-img-top" alt="">
+    </div>
+    {%endfor%}
+</div>
+
+<h6 class="namespokemon">{{opponent.username}}'s Pokemon</h6>
+<div class="bottomhalf">
+    {%for pokemon in opponent.caught_pokemon%}
+    <div class="team-card filled-card card style="width: 14rem;">
+        <div class="team-title card-body">
+            <h5 class="team-title card-title">{{pokemon.name}}</h5>
+        </div>
+        <img src="{{pokemon.sprite_img}}" class="team-img card-img-top" alt="">
+    </div>
+    {%endfor%}
+</div>
+
+
+
+{%endblock%}

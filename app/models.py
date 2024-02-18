@@ -47,3 +47,6 @@ class Pokemon(db.Model):
         db.session.add(self)
         db.session.commit()
 
+# Possible addition to have individual pokemon fight - New table - previous battles
+# columns - user id, opponent id, current pokemon, opponent pokemon
+# Then when fight again, see if fight already done based on ids and if true dont show them/flash message
