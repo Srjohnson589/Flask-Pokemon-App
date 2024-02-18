@@ -2,14 +2,6 @@
     margin: 2% auto;
     padding: 20px;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-}
-
-.blank-card {
-    background-color: rgba(200, 199, 199, 0.32);
-    border: 2px solid rgba(128, 128, 128, 0.458);
-}
-
-.filled-card {
     background-color: rgba(219, 244, 255, 0.897);
     border: 4px solid rgb(251, 185, 3);
 }

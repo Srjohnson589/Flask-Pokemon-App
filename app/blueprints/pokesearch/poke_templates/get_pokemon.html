@@ -20,7 +20,9 @@
             <div id="emailHelp" class="form-text">(Name or number up to 1025)</div>
             </div>
             {{ form.submit_btn(class="btn mybtn")}}
+            {%if current_user.is_authenticated%}
             {{ form.catch_btn(class="btn mybtn")}}
+            {%endif%}
         </form>
     </div>
     <div class="searchedcard">
